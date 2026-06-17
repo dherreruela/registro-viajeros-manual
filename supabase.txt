@@ -1,0 +1,2 @@
+https://cwxdcsjknfkflcumzdhw.supabase.co/rest/v1/
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3eGRjc2prbmZrZmxjdW16ZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3MjIxMzQsImV4cCI6MjA5NzI5ODEzNH0.MvESMbzI0k0fLcLn0ESvwT6Pwkrb_-5U-QSKLZW0Ags
