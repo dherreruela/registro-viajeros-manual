@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🏠 Sistema de Reservas</h1>
+                <button id="menuToggle" class="menu-toggle">☰</button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- NAVIGATION SIDEBAR -->
+            <nav class="sidebar" id="sidebar">
+                <div class="sidebar-content">
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="#" class="nav-item active" data-page="dashboard">
+                                <span class="icon">📊</span>
+                                <span class="label">Reservas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="calendario">
+                                <span class="icon">📅</span>
+                                <span class="label">Calendario</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="viviendas">
+                                <span class="icon">🏠</span>
+                                <span class="label">Viviendas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="ajustes">
+                                <span class="icon">⚙️</span>
+                                <span class="label">Ajustes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- MAIN CONTENT -->
+            <main class="content">
+                <!-- DASHBOARD / RESERVAS -->
+                <section id="dashboard" class="page active">
+                    <h2>Reservas Activas</h2>
+                    <div id="listaReservas" class="reservas-grid">
+                        <p class="loading">Cargando reservas...</p>
+                    </div>
+                </section>
+
+                <!-- CALENDARIO -->
+                <section id="calendario" class="page">
+                    <h2>Calendario</h2>
+                    <p style="text-align: center; color: #999; padding: 40px 20px;">
+                        📅 Integración con Google Calendar (próximamente)
+                    </p>
+                </section>
+
+                <!-- VIVIENDAS -->
+                <section id="viviendas" class="page">
+                    <h2>Mis Viviendas</h2>
+
+                    <!-- FORM NUEVA VIVIENDA -->
+                    <form id="formVivienda" class="form">
+                        <h3>Añadir Nueva Vivienda</h3>
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre de la Vivienda *</label>
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                placeholder="ej: Casa playa Málaga"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input
+                                type="text"
+                                id="direccion"
+                                name="direccion"
+                                placeholder="ej: Calle Marina 123, Málaga"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="googleCalendar">ID Calendario Google *</label>
+                            <input
+                                type="text"
+                                id="googleCalendar"
+                                name="googleCalendar"
+                                placeholder="ej: abc@group.calendar.google.com"
+                                required
+                            >
+                            <small>Lo encontrarás en ajustes de tu calendario Google</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            ➕ Crear Vivienda
+                        </button>
+                    </form>
+
+                    <!-- LISTA DE VIVIENDAS -->
+                    <div id="listaViviendas" class="lista-viviendas">
+                        <p class="loading">Cargando viviendas...</p>
+                    </div>
+                </section>
+
+                <!-- AJUSTES -->
+                <section id="ajustes" class="page">
+                    <h2>Ajustes y Configuración</h2>
+
+                    <div class="settings-group">
+                        <h3>API</h3>
+                        <div class="setting-item">
+                            <label>URL del servidor:</label>
+                            <p id="apiUrl" class="setting-value">http://localhost:8000</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Información del Sistema</h3>
+                        <div class="setting-item">
+                            <label>Versión:</label>
+                            <p class="setting-value">0.1.0</p>
+                        </div>
+                        <div class="setting-item">
+                            <label>Última actualización:</label>
+                            <p class="setting-value">17/06/2026</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Sistema de Registro de Viajeros © 2026</p>
+        </footer>
+    </div>
+
+    <!-- MODAL EDITAR VIVIENDA -->
+    <div id="modalEditar" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close-editar">&times;</span>
+            <h3>Editar Vivienda</h3>
+            <form id="formEditarVivienda" class="form">
+                <input type="hidden" id="editPropertyId">
+
+                <div class="form-group">
+                    <label for="editNombre">Nombre de la Vivienda *</label>
+                    <input type="text" id="editNombre" name="editNombre" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="editDireccion">Dirección</label>
+                    <input type="text" id="editDireccion" name="editDireccion" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="editGoogleCalendar">ID Calendario Google *</label>
+                    <input type="text" id="editGoogleCalendar" name="editGoogleCalendar" required autocomplete="off">
+                    <small>Lo encontrarás en ajustes de tu calendario Google</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">💾 Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL PARA MENSAJES -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
