@@ -10,6 +10,8 @@ supabase = get_supabase()
 def create_reservation(reservation: ReservationCreate):
     try:
         data = reservation.dict()
+        data["check_in"] = str(data["check_in"])
+        data["check_out"] = str(data["check_out"])
         result = supabase.table("reservations").insert(data).execute()
 
         if result.data:

@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 from pathlib import Path
-from app.routes import reservations
+from app.routes import reservations, properties
 
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path)
@@ -24,6 +24,7 @@ app.add_middleware(
 )
 
 # Incluir rutas
+app.include_router(properties.router)
 app.include_router(reservations.router)
 
 @app.get("/")

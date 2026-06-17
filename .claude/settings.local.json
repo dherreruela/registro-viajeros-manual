@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:8000/health)",
+      "Bash(curl -s http://localhost:8000/api/reservations/)",
+      "Bash(curl -s -X POST http://localhost:8000/api/reservations/ -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -s -X POST http://localhost:8000/api/properties/ -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -s http://localhost:8000/api/properties/)"
+    ]
+  }
+}
